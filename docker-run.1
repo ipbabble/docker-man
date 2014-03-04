@@ -23,7 +23,7 @@ IMAGE [COMMAND] [ARG...]
 .SH DESCRIPTION
 Run a process in a new container. \fBdocker run\fR starts a process with its own file system, its own networking, and its own isolated process tree. The \fIIMAGE\fR which starts the process may define defaults related to the process that will be run in the container, the networking to expose, and more, but \fBdocker run\fR gives final control to the operator or administrator who starts the container from the image. For that reason \fBdocker run\fR has more options than any other docker command.
 
-If the \fIIMAGE\fR is not already loaded then \fBdocker run\fR will pull the \fBIMAGE\fR, and all image dependencies, from the repository in the same way running \fBdocker pull\fR \fIIMAGE\fR, before it starts the container from that image.
+If the \fIIMAGE\fR is not already loaded then \fBdocker run\fR will pull the \fIIMAGE\fR, and all image dependencies, from the repository in the same way running \fBdocker pull\fR \fIIMAGE\fR, before it starts the container from that image.
 
 
 .B  -a, --attach=\fIstdin\fR|\fIstdout\fR|\fIstderr\fR: 
@@ -80,10 +80,10 @@ Assign a name to the container. The operator can identify a container in three w
 .nf
 UUID long identifier (“f78375b1c487e03c9438c729345e54db9d20cfa2ac1fc3494b6eb60872e74778”)
 UUID short identifier (“f78375b1c487”)
-Name (“evil_ptolemy”)
+Name (“jonah”)
 .fi
 .sp
-The UUID identifiers come from the Docker daemon, and if you do not assign a name to the container with \fB--name\fR then the daemon will also generate a random string name too. The name is useful when defining links (see \fB--link\fR) (or any other place you need to identify a container). This works for both background and foreground Docker containers.
+The UUID identifiers come from the Docker daemon, and if a name is not assigned to the container with \fB--name\fR then the daemon will also generate a random string name. The name is useful when defining links (see \fB--link\fR) (or any other place you need to identify a container). This works for both background and foreground Docker containers.
 
 .B --privileged=\fItrue\fR|\fIfalse\fR: 
 Give extended privileges to this container. By default, Docker containers are “unprivileged” (=false) and cannot, for example, run a Docker daemon inside the Docker container. This is because by default a container is not allowed to access any devices. A “privileged” container is given access to all devices.
@@ -93,17 +93,17 @@ When the operator executes \fbdocker run -privileged\fR, Docker will enable acce
 .B --rm=\fItrue\fR|\fIfalse\fR: 
 If set to \fItrue\fR the container is automatically removed when it exits. The default is \fIfalse\fR. This option is incompatible with \fB-d\fR.
 
-.B --sig-proxy=true: 
-Proxify all received signal to the process (even in non-tty mode)
+.B --sig-proxy=\fItrue\fR|\fIfalse\fR: 
+When set to true, proxify all received signals to the process (even in non-tty mode). The default is true.
   
-.B -t, --tty=false: 
-Allocate a pseudo-tty
+.B -t, --tty=\fItrue\fR|\fIfalse\fR: 
+If set to true, allocate a pseudo-tty. The default is false.
 
 .B -u, --user=\fIusername\fR,\fRuid\fR: 
-Username or UID
+Set a username or UID for the container.
 
-.B -v, --volume=[]: 
-Bind mount a volume (e.g. from the host: -v /host:/container, from docker: -v /container)
+.B -v, --volume=\fIvolume\fR: 
+Bind mount a volume to the container. (e.g. from the host: -v /host:/container, from docker: -v /container)
 
 .B --volumes-from=\fIcontainer-id\fR: 
 Mount volumes from the specified container with container-id.
@@ -119,3 +119,6 @@ If you do not specify -a then Docker will attach everything (stdin,stdout,stderr
 docker run -a stdin -a stdout -i -t fedora /bin/bash
 .RE
 .sp
+
+.SH HISTORY
+March 2014, Originally compiled by William Henry (whenry at redhat dot com) based on dockier.io source material. 
