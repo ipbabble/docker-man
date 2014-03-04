@@ -1,0 +1,72 @@
+.\" Process this file with
+.\" nroff -man -Tascii docker-run.1
+.\"
+.TH "DOCKER" "1" "MARCH 2014" "0.1" "Docker"
+.SH NAME
+docker-run \- Run a process in an isolated container
+.SH SYNOPSIS
+.B docker run 
+[\fB-a\fR|\fB--attach\fR[=]] [\fB-c\fR|\fB--cpu-shares\fR[=0] 
+[\fB--cidfile\fR=\fIfile\fR] [\fB-d\fR|\fB--detach\fR[=\fIfalse\fR]] [\fB--dns\fR=\fIIP-address\fR]
+[\fB--name\fR=\fIname\fR] [\fB-u\fR|\fB--user\fR=\fIusername\fR|\fIuid\fR]
+[\fB--link\fR=\fIname\fR:\fIalias\fR] 
+[\fB-e\fR|\fB--env\fR=\fIenvironment\fR] [\fB--entrypoint\fR=\fIcommand\fR] 
+[\fB--expose\fR=\fIport\fR] [\fB-P\fR|\fB--publish-all\fR[=\fIfalse\fR]]
+[\fB-p\fR|\fB--publish\fR=\fIport-mappping\fR] [\fB-h\fR|\fB--hostname\fR=\fIhostname\fR]
+[\fB--rm\fR[=\fIfalse\fR]] [\fB--priviledged\fR[=\fIfalse\fR]
+[\fB-i\fR|\fB--interactive\fR[=\fIfalse\fR] 
+[\fB-t\fR|\fB--tty\fR[=\fIfalse\fR]] [\fB--lxc-conf\fR=\fIoptions\fR]
+[\fB-m\fR|\fB--memory\fR=\fImemory-limit\fR] [\fB-n\fR|\fB--networking\fR[=\fItrue\fR]]
+[\fB-v\fR|\fB--volume\fR=\fIvolume\fR] [\fb--volumes-from\fR=\fIcontainer\fR]
+[\fB-w\fR|\fB--workdir\fR=\fIdirectory\fR] [\fB--sig-proxy\fR[=\fItrue\fR]]
+IMAGE [COMMAND] [ARG...]
+.SH DESCRIPTION
+Run a process in a new container. \fBdocker run\fR starts a process with its own file system, its own networking, and its own isolated process tree. The \fIIMAGE\fR which starts the process may define defaults related to the process that will be run in the container, the networking to expose, and more, but \fBdocker run\fR gives final control to the operator or administrator who starts the container from the image. For that reason \fBdocker run\fR has more options than any other docker command.
+
+If the \fIIMAGE\fR is not already loaded then \fBdocker run\fR will pull the \fBIMAGE\fR, and all image dependencies, from the repository in the same way running \fBdocker pull\fR \fIIMAGE\fR, before it starts the container from that image.
+
+
+.B  -a
+, --attach=[]: Attach to stdin, stdout or stderr.
+
+.B  -c
+, --cpu-shares=0: CPU shares (relative weight)
+
+--cidfile=\fIfile\fR: Write the container ID to the file
+
+.B  -d
+, --detach=false: Detached mode. This runs the container running in the background. It prints the new container's id and nothing else. At any time you can run \fBdocker ps\fR in the other shell to view a list of the running containers. See \fBdocker attach\fR for instructions on how to attach to the running container.
+
+--dns=[]: Set custom dns servers. This option can be used to override the dns configuration passed to the container. Typically this is necessary when the host dns configuration is invalid for the container (eg. 127.0.0.1). When this is the case the \fB-dns\fR flags is necessary for every run.
+
+.B  -e
+, --env=[]: Set environment variables. This option allows you to specify arbitrary environment variables that are available for the process that will be launched inside of the container. 
+
+--entrypoint="": Overwrite the default entrypoint of the image
+
+.B  -P
+, --publish-all=false: Publish all exposed ports to the host interfaces
+
+--expose=[]: Expose a port from the container without publishing it to your host
+.B -p
+, --publish=[]: Publish a container's port to the host (format: ip:hostPort:containerPort | ip::containerPort | hostPort:containerPort) (use 'docker port' to see the actual mapping)
+
+.B -h 
+, --hostname="": Container host name
+  
+.B -i 
+, --interactive=false: Keep stdin open even if not attached
+  --link=[]: Add link to another container (name:alias)
+  --lxc-conf=[]: Add custom lxc options -lxc-conf="lxc.cgroup.cpuset.cpus = 0,1"
+  -m, --memory="": Memory limit (format: <number><optional unit>, where unit = b, k, m or g)
+  -n, --networking=true: Enable networking for this container
+  --name="": Assign a name to the container
+  --privileged=false: Give extended privileges to this container
+  --rm=false: Automatically remove the container when it exits (incompatible with -d)
+  --sig-proxy=true: Proxify all received signal to the process (even in non-tty mode)
+  -t, --tty=false: Allocate a pseudo-tty
+  -u, --user="": Username or UID
+  -v, --volume=[]: Bind mount a volume (e.g. from the host: -v /host:/container, from docker: -v /container)
+  --volumes-from=[]: Mount volumes from the specified container(s)
+  -w, --workdir="": Working directory inside the container
+.SH EXAMPLES
