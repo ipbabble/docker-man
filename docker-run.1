@@ -86,7 +86,7 @@ Add link to another container. The format is name:alias. If the operator uses \f
 
 .TP
 .B -n, --networking=\fItrue\fR|\fIfalse\fR: 
-By default, all containers have networking enabled (true) and can make outgoing connections. The operator can disable networking with \fBdocker run --networking=false\fR. this disables all incoming and outgoing networking. In cases like this, I/O can only be performed through files or by using STDIN/STDOUT.
+By default, all containers have networking enabled (true) and can make outgoing connections. The operator can disable networking with \fB--networking\fR to false. This disables all incoming and outgoing networking. In cases like this, I/O can only be performed through files or by using STDIN/STDOUT.
 
 Also, by default, the container will use the same DNS servers as the host. but you canThe operator may override this with \fB-dns\fR. 
 
@@ -140,18 +140,16 @@ Working directory inside the container. The default working directory for runnin
 .sp
 .B Sharing Volumes Across Containers:
 .TP
-To share volumes from one container with other containers we can mount the volumes in the first container:
+To share volumes from one container with other containers we can mount the volumes in the first container. The commande below mounts two images in a container named my-data-volume and then exits. The container does not need to be running for the volumes to be shared by another container.
 .sp
 .RS
-docker run -v /tmp/vol1 -v /tmp/vol2 -i -t fedora /bin/bash
+docker run --name=my-data-volume -v /tmp/vol1 -v /tmp/vol2 -i -t fedora /bin/true
 .RE
 .sp
 Then share the volumes from the container with the id obtained from \fBdocker ps\fR in a second container or other containers:
 .sp
 .RS
-docker ps
-.br
-docker run --volumes-from=55bf7e43cf0c -i -t fedora /bin/bash
+docker run --volumes-from=my-data-volume -i -t fedora /bin/bash
 .RE
 .sp
 .B Attaching to one or more from STDIN, STDOUT, STDERR
