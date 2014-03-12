@@ -152,6 +152,30 @@ Then share the volumes from the container with the id obtained from \fBdocker ps
 docker run --volumes-from=my-data-volume -i -t fedora /bin/bash
 .RE
 .sp
+.B Exposing log messages from the container to the host's log
+.TP
+If you want messages that are logged in your container to show up in the host's syslog/journal then you should bind mount the /var/log directory as follows.
+.sp
+.RS
+docker run -v /dev/log:/dev/log -i -t fedora /bin/bash
+.RE
+.sp
+From inside the container you can test this by sending a message to the log.
+.sp
+.RS
+logger "Hello from my container"
+.sp
+.RE
+The exit and check the journal.
+.RS
+.sp
+exit
+.sp
+journalctl -b | grep hello
+.RE
+.sp
+This should list the message sent to logger.
+.sp
 .B Attaching to one or more from STDIN, STDOUT, STDERR
 .TP
 If you do not specify -a then Docker will attach everything (stdin,stdout,stderr). You can specify to which of the three standard streams (stdin, stdout, stderr) you’d like to connect instead, as in:
