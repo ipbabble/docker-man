@@ -184,6 +184,26 @@ If you do not specify -a then Docker will attach everything (stdin,stdout,stderr
 docker run -a stdin -a stdout -i -t fedora /bin/bash
 .RE
 .sp
-
+.B Linking Containers
+.TP
+The link feature allows multiple containers to communicate with each other. For example, a container whose Dockerfile has exposed port 80 can be run and named as follows: 
+.sp
+.RS
+docker run --name link-test -d -i -t fedora/httpd
+.RE
+.sp
+.TP
+A second container, in this case called linker, can communicate with the httpd container, named link-test, by running with the \fB--link=<name>:<alias>\fR
+.sp
+.RS
+docker run -t -i --link=link-test:lt --name=linker fedora /bin/bash
+.RE
+.sp
+.TP
+Now the container linker is linked to container link-test with the alias lt. Running the \fBenv\fR command in the linker container shows environment variables with the LT (alias) context (\fBLT_\fR)
+.sp
+.TP 
+When linking two containers Docker will use the exposed ports of the container to create a secure tunnel for the parent to access. 
+ 
 .SH HISTORY
 March 2014, Originally compiled by William Henry (whenry at redhat dot com) based on dockier.io source material. 
