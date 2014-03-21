@@ -204,6 +204,43 @@ Now the container linker is linked to container link-test with the alias lt. Run
 .sp
 .TP 
 When linking two containers Docker will use the exposed ports of the container to create a secure tunnel for the parent to access. 
+.TP
+.sp
+.B Creating and Mounting a Data Volume Container
+.TP
+Many applications require the sharing of persistent data across several containers. Docker allows you to create a Data Volume Container that other containers can mount from. For example, create a named container that contains directorys /var/volume1 and /tmp/volume2. The image will need to contain these directories so a couple of RUN mkdir instructions might be required for you fedora-data image: 
+.sp
+.RS
+docker run --name=data -v /var/volume1 -v /tmp/volume2 -i -t fedora-data true
+.sp
+docker run --volumes-from=data --name=fedora-container1 -i -t fedora bash
+.RE
+.sp
+.TP
+Multiple -volumes-from parameters will bring together multiple data volumes from multiple containers. And it's possiible to mount the volumes that came from the DATA container in yet another container via the fedora-container1 intermidiary container, allowing to abstract the actual data source from users of that data:
+.sp
+.RS
+docker run --volumes-from=fedora-container1 --name=fedora-container2 -i -t fedora bash
+.RE
+.TP
+.sp
+.B Mounting External Volumes
+.TP
+To mount a host directory as a container volume, specifiy the absolute path to the directory and the absolute path for the container directory separated by a colon:  
+.sp
+.RS
+docker run -v /var/db:/data1 -i -t fedora bash
+.RE
+.sp
+.TP
+When using SELinux, be aware that the host has no knowledge of container SELinux policy. Therefore, in the above example, if SELinux policy is enforced, the /var/db direcotry is not writable to the container. A "Permission Denied" message will occur and an avc: messaging in the host's syslog. 
+.sp
+To work around this, at time of writing this man page, the following command needs to be run in order for the proper SELinux policy type label to be attached to the host directory:  
+.sp
+.RS
+chcon -Rt svirt_sandbox_file_t /var/db
+.RE
+.sp
  
 .SH HISTORY
 March 2014, Originally compiled by William Henry (whenry at redhat dot com) based on dockier.io source material. 
