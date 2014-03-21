@@ -138,6 +138,7 @@ Working directory inside the container. The default working directory for runnin
 
 .SH EXAMPLES
 .sp
+.sp
 .B Sharing Volumes Across Containers:
 .TP
 To share volumes from one container with other containers we can mount the volumes in the first container. The commande below mounts two images in a container named my-data-volume and then exits. The container does not need to be running for the volumes to be shared by another container.
@@ -233,14 +234,17 @@ docker run -v /var/db:/data1 -i -t fedora bash
 .RE
 .sp
 .TP
-When using SELinux, be aware that the host has no knowledge of container SELinux policy. Therefore, in the above example, if SELinux policy is enforced, the /var/db direcotry is not writable to the container. A "Permission Denied" message will occur and an avc: messaging in the host's syslog. 
+When using SELinux, be aware that the host has no knowledge of container SELinux policy. Therefore, in the above example, if SELinux policy is enforced, the /var/db direcotry is not writable to the container. A "Permission Denied" message will occur and an avc: message in the host's syslog. 
 .sp
+.TP
 To work around this, at time of writing this man page, the following command needs to be run in order for the proper SELinux policy type label to be attached to the host directory:  
 .sp
 .RS
 chcon -Rt svirt_sandbox_file_t /var/db
 .RE
 .sp
- 
+.TP
+Now, wirting to the /data1 volume in the container will be allowed and the changes will also be reflected on the host in /var/db.
+.sp 
 .SH HISTORY
-March 2014, Originally compiled by William Henry (whenry at redhat dot com) based on dockier.io source material. 
+March 2014, Originally compiled by William Henry (whenry at redhat dot com) based on dockier.io source material and internal work.
