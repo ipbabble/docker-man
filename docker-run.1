@@ -139,20 +139,6 @@ Working directory inside the container. The default working directory for runnin
 .SH EXAMPLES
 .sp
 .sp
-.B Sharing Volumes Across Containers:
-.TP
-To share volumes from one container with other containers we can mount the volumes in the first container. The commande below mounts two images in a container named my-data-volume and then exits. The container does not need to be running for the volumes to be shared by another container.
-.sp
-.RS
-docker run --name=my-data-volume -v /tmp/vol1 -v /tmp/vol2 -i -t fedora /bin/true
-.RE
-.sp
-Then share the volumes from the container with the id obtained from \fBdocker ps\fR in a second container or other containers:
-.sp
-.RS
-docker run --volumes-from=my-data-volume -i -t fedora /bin/bash
-.RE
-.sp
 .B Exposing log messages from the container to the host's log
 .TP
 If you want messages that are logged in your container to show up in the host's syslog/journal then you should bind mount the /var/log directory as follows.
@@ -190,7 +176,7 @@ docker run -a stdin -a stdout -i -t fedora /bin/bash
 The link feature allows multiple containers to communicate with each other. For example, a container whose Dockerfile has exposed port 80 can be run and named as follows: 
 .sp
 .RS
-docker run --name link-test -d -i -t fedora/httpd
+docker run --name=link-test -d -i -t fedora/httpd
 .RE
 .sp
 .TP
@@ -207,6 +193,15 @@ Now the container linker is linked to container link-test with the alias lt. Run
 When linking two containers Docker will use the exposed ports of the container to create a secure tunnel for the parent to access. 
 .TP
 .sp
+.B Mapping Ports for External Usage
+.TP
+The exposed port of an application can be mapped to a host port using the \fB-p\fR flag. For example a httpd port 80 can be mapped to the host port 8080 using the following:
+.sp
+.RS
+docker run -p 8080:80 -d -i -t fedora/httpd
+.RE
+.sp
+.TP
 .B Creating and Mounting a Data Volume Container
 .TP
 Many applications require the sharing of persistent data across several containers. Docker allows you to create a Data Volume Container that other containers can mount from. For example, create a named container that contains directorys /var/volume1 and /tmp/volume2. The image will need to contain these directories so a couple of RUN mkdir instructions might be required for you fedora-data image: 
