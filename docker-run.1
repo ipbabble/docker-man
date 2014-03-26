@@ -21,6 +21,7 @@ docker-run \- Run a process in an isolated container
 [\fB-w\fR|\fB--workdir\fR=\fIdirectory\fR] [\fB--sig-proxy\fR[=\fItrue\fR]]
 IMAGE [COMMAND] [ARG...]
 .SH DESCRIPTION
+.PP
 Run a process in a new container. \fBdocker run\fR starts a process with its own file system, its own networking, and its own isolated process tree. The \fIIMAGE\fR which starts the process may define defaults related to the process that will be run in the container, the networking to expose, and more, but \fBdocker run\fR gives final control to the operator or administrator who starts the container from the image. For that reason \fBdocker run\fR has more options than any other docker command.
 
 If the \fIIMAGE\fR is not already loaded then \fBdocker run\fR will pull the \fIIMAGE\fR, and all image dependencies, from the repository in the same way running \fBdocker pull\fR \fIIMAGE\fR, before it starts the container from that image.
@@ -153,7 +154,7 @@ From inside the container you can test this by sending a message to the log.
 logger "Hello from my container"
 .sp
 .RE
-The exit and check the journal.
+Then exit and check the journal.
 .RS
 .sp
 exit
