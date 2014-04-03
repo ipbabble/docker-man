@@ -1,9 +1,9 @@
 .\" Process this file with
 .\" nroff -man -Tascii docker-run.1
 .\"
-.TH "DOCKER" "1" "MARCH 2014" "0.1" "Docker"
+.TH "DOCKER" "1" "April 2014" "0.1" "Docker"
 .SH NAME
-docker-build \- List local images
+docker-images \- List the images in the local repository
 .SH SYNOPSIS
 .B docker images
 [\fB-a\fR|\fB--all\fR=\fIfalse\fR] 
@@ -15,20 +15,20 @@ docker-build \- List local images
 .SH DESCRIPTION
 This command lists the images stored in the local docker repository. 
 .sp
-By default, intermediate images are not listed, some of the output is truncated and the output is listed 
+By default, intermediate images are not listed. Some of the output, e.g. image ID, is truncated, for space reasons. However the truncated image ID, and often the first few characters, are enough to be used in other Docker commands that use the image ID. The output includes repository, tag, image ID, date created and the virtual size. 
 .SH "OPTIONS"
 .TP
 .B -a, --all=\fItrue\fR|\fIfalse\fR: 
 When set to true, also include all intermediate images in the list. The default is false.
 .TP
 .B --no-trunc=\fItrue\fR|\fIfalse\fR: 
-When set to true, list only the shortened image IDs. The default is false.
+When set to true, list the . The default is false.
 .TP
 .B -q, --quiet=\fItrue\fR|\fIfalse\fR: 
-When set to true, list only the shortened image IDs. The default is false.
+When set to true, list the complete image ID as part of the output. The default is false.
 .TP
 .B -t, --tree=\fItrue\fR|\fIfalse\fR: 
-When set to true, list the images in a tree dependency graph format. The default is false.
+When set to true, list the images in a tree dependency tree (hierarchy) format. The default is false.
 .TP
 .B -v, --viz=\fItrue\fR|\fIfalse\fR
 When set to true, list the graph in graphviz format. The default is \fIfalse\fR.
@@ -45,28 +45,28 @@ docker images
 .sp
 The list will contain the image repository name, a tag for the image, and image ID, when it was created and its virtual size. Columns: REPOSITORY, TAG, IMAGE ID, CREATED, and VIRTUAL SIZE.
 .sp
-To get a verbose list of images whcih contains all the intermediate images used in builds use \fB-a\fR:
+To get a verbose list of images which contains all the intermediate images used in builds use \fB-a\fR:
 .sp
 .RS
 docker images -a
 .RE
 .sp
-.B List images in a tree dependecy format
+.B List images dependency tree hierarchy
 .TP
-To list the images in the local repository (not the registry) in a dependency tree format then usee the \fB-t\fR|\fB--tree=true\fR option. 
+To list the images in the local repository (not the registry) in a dependency tree, format then use the \fB-t\fR|\fB--tree=true\fR option. 
 .sp
 .RS
 docker images -t 
 .RE
 .sp
-This displays a staggered tree where the less indented image is the oldest with dependent image layers branching inward (to the right) on subsequent lines. The newest or top level image layer is listed last in any tree branch. 
+This displays a staggered hierarchy tree where the less indented image is the oldest with dependent image layers branching inward (to the right) on subsequent lines. The newest or top level image layer is listed last in any tree branch. 
 .sp
 .B List images in GraphViz format
 .TP
-To display the list in a format consumable by a graphviz tools run with \fB-v\fR|\fB--viz=true\fR. 
+To display the list in a format consumable by a GraphViz tools run with \fB-v\fR|\fB--viz=true\fR. For example to produce a .png graph file of the hierarchy use: 
 .sp
 .RS
-docker images -v
+docker images --viz | dot -Tpng -o docker.png
 .sp
 .RE
 .sp
@@ -79,4 +79,4 @@ docker images -q
 .RE
 .sp
 .SH HISTORY
-March 2014, Originally compiled by William Henry (whenry at redhat dot com) based on dockier.io source material and internal work.
+April 2014, Originally compiled by William Henry (whenry at redhat dot com) based on dockier.io source material and internal work.
