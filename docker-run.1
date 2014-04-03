@@ -137,6 +137,18 @@ Will mount volumes from the specified container identified by container-id. Once
 .B -w, --workdir=\fIdirectory\fR: 
 Working directory inside the container. The default working directory for running binaries within a container is the root directory (/). The developer can set a different default with the Dockerfile WORKDIR instruction. The operator can override the working directory by using the \fB-w\fR option. 
 
+.TP
+.B IMAGE: 
+The image name or ID.
+
+.TP
+.B COMMAND: 
+The command or program to run inside the image.
+
+.TP
+.B ARG: 
+The arguments for the command to be run in the container.
+
 .SH EXAMPLES
 .sp
 .sp
