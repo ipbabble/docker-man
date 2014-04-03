@@ -202,6 +202,23 @@ docker run -t -i --link=link-test:lt --name=linker fedora /bin/bash
 .TP
 Now the container linker is linked to container link-test with the alias lt. Running the \fBenv\fR command in the linker container shows environment variables with the LT (alias) context (\fBLT_\fR)
 .sp
+.RS
+# env
+HOSTNAME=668231cb0978
+TERM=xterm
+LT_PORT_80_TCP=tcp://172.17.0.3:80
+LT_PORT_80_TCP_PORT=80
+LT_PORT_80_TCP_PROTO=tcp
+LT_PORT=tcp://172.17.0.3:80
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/
+LT_NAME=/linker/lt
+SHLVL=1
+HOME=/
+LT_PORT_80_TCP_ADDR=172.17.0.3
+_=/usr/bin/env
+.RE
+.sp
 .TP 
 When linking two containers Docker will use the exposed ports of the container to create a secure tunnel for the parent to access. 
 .TP
@@ -217,7 +234,7 @@ docker run -p 8080:80 -d -i -t fedora/httpd
 .TP
 .B Creating and Mounting a Data Volume Container
 .TP
-Many applications require the sharing of persistent data across several containers. Docker allows you to create a Data Volume Container that other containers can mount from. For example, create a named container that contains directorys /var/volume1 and /tmp/volume2. The image will need to contain these directories so a couple of RUN mkdir instructions might be required for you fedora-data image: 
+Many applications require the sharing of persistent data across several containers. Docker allows you to create a Data Volume Container that other containers can mount from. For example, create a named container that contains directories /var/volume1 and /tmp/volume2. The image will need to contain these directories so a couple of RUN mkdir instructions might be required for you fedora-data image: 
 .sp
 .RS
 docker run --name=data -v /var/volume1 -v /tmp/volume2 -i -t fedora-data true
@@ -226,7 +243,7 @@ docker run --volumes-from=data --name=fedora-container1 -i -t fedora bash
 .RE
 .sp
 .TP
-Multiple -volumes-from parameters will bring together multiple data volumes from multiple containers. And it's possiible to mount the volumes that came from the DATA container in yet another container via the fedora-container1 intermidiary container, allowing to abstract the actual data source from users of that data:
+Multiple -volumes-from parameters will bring together multiple data volumes from multiple containers. And it's possible to mount the volumes that came from the DATA container in yet another container via the fedora-container1 intermidiery container, allowing to abstract the actual data source from users of that data:
 .sp
 .RS
 docker run --volumes-from=fedora-container1 --name=fedora-container2 -i -t fedora bash
@@ -235,14 +252,14 @@ docker run --volumes-from=fedora-container1 --name=fedora-container2 -i -t fedor
 .sp
 .B Mounting External Volumes
 .TP
-To mount a host directory as a container volume, specifiy the absolute path to the directory and the absolute path for the container directory separated by a colon:  
+To mount a host directory as a container volume, specify the absolute path to the directory and the absolute path for the container directory separated by a colon:  
 .sp
 .RS
 docker run -v /var/db:/data1 -i -t fedora bash
 .RE
 .sp
 .TP
-When using SELinux, be aware that the host has no knowledge of container SELinux policy. Therefore, in the above example, if SELinux policy is enforced, the /var/db direcotry is not writable to the container. A "Permission Denied" message will occur and an avc: message in the host's syslog. 
+When using SELinux, be aware that the host has no knowledge of container SELinux policy. Therefore, in the above example, if SELinux policy is enforced, the /var/db directory is not writable to the container. A "Permission Denied" message will occur and an avc: message in the host's syslog. 
 .sp
 .TP
 To work around this, at time of writing this man page, the following command needs to be run in order for the proper SELinux policy type label to be attached to the host directory:  
@@ -252,7 +269,7 @@ chcon -Rt svirt_sandbox_file_t /var/db
 .RE
 .sp
 .TP
-Now, wirting to the /data1 volume in the container will be allowed and the changes will also be reflected on the host in /var/db.
+Now, writing to the /data1 volume in the container will be allowed and the changes will also be reflected on the host in /var/db.
 .sp 
 .SH HISTORY
 March 2014, Originally compiled by William Henry (whenry at redhat dot com) based on dockier.io source material and internal work.
