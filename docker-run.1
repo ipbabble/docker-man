@@ -202,6 +202,7 @@ docker run -t -i --link=link-test:lt --name=linker fedora /bin/bash
 .TP
 Now the container linker is linked to container link-test with the alias lt. Running the \fBenv\fR command in the linker container shows environment variables with the LT (alias) context (\fBLT_\fR)
 .sp
+.nf
 .RS
 # env
 HOSTNAME=668231cb0978
@@ -218,6 +219,7 @@ HOME=/
 LT_PORT_80_TCP_ADDR=172.17.0.3
 _=/usr/bin/env
 .RE
+.fi
 .sp
 .TP 
 When linking two containers Docker will use the exposed ports of the container to create a secure tunnel for the parent to access. 
