@@ -16,7 +16,7 @@ This will tag an image in the repository.
 When set to true, force the tag name. The default is \fIfalse\fR.
 .TP
 .B REGISTRYHOST:
-The host name of the registry if required. This may also include the port seperated by a ':'
+The hostname of the registry if required. This may also include the port separated by a ':'
 .TP
 .B USERNAME:
 The username or other qualifying identifier for the image.
@@ -31,15 +31,15 @@ The tag you are assigning to the image.
 .PP
 .B Tagging an image
 .TP
-Here is an example of tagging and image with the tag version1.0:
+Here is an example of tagging an image with the tag version1.0 :
 .sp
 .RS
 docker tag 0e5574283393 fedora/httpd:version1.0
 .RE
 .sp
-.B Tagging a image for a internal repository
+.B Tagging an image for a internal repository
 .TP
-To push an image to an internal Registry and not the default docker.io based registry you must tag it with the registy hostname and port (if needed).
+To push an image to an internal Registry and not the default docker.io based registry you must tag it with the registry hostname and port (if needed).
 .sp
 .RS
 docker tag 0e5574283393 myregistryhost:5000/fedora/httpd:version1.0
