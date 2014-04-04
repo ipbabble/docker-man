@@ -3,7 +3,7 @@
 .\"
 .TH "DOCKER" "1" "April 2014" "0.1" "Docker"
 .SH NAME
-docker-images \- List the images in the local repository (by default, filter out the intermediate images used to build)
+docker-images \- List the images in the local repository 
 .SH SYNOPSIS
 .B docker images
 [\fB-a\fR|\fB--all\fR=\fIfalse\fR] 
@@ -15,7 +15,9 @@ docker-images \- List the images in the local repository (by default, filter out
 .SH DESCRIPTION
 This command lists the images stored in the local docker repository. 
 .sp
-By default, intermediate images are not listed. Some of the output, e.g. image ID, is truncated, for space reasons. However the truncated image ID, and often the first few characters, are enough to be used in other Docker commands that use the image ID. The output includes repository, tag, image ID, date created and the virtual size. 
+By default, intermediate images, used during builds, are not listed. Some of the output, e.g. image ID, is truncated, for space reasons. However the truncated image ID, and often the first few characters, are enough to be used in other Docker commands that use the image ID. The output includes repository, tag, image ID, date created and the virtual size. 
+.sp
+The title REPOSITORY for the first title may seem confusing. It is essentially the image name.  However, because you can tag a specific image, and multiple tags (image instances) can be associated with a single name, the name is really a repository for all tagged images of the same name. 
 .SH "OPTIONS"
 .TP
 .B -a, --all=\fItrue\fR|\fIfalse\fR: 
