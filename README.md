@@ -9,6 +9,7 @@ Files
 =====
 
 docker.1
+docker-attach.1
 docker-run.1
 docker-images.1
 docker-build.1
