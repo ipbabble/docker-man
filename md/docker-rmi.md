@@ -31,5 +31,5 @@ Here is an example of removing and image:
 
 # HISTORY
 
-April 2014, Originally compiled by William Henry (whenry at redhat dot 
-com) based on dockier.io source material and internal work.
+April 2014, Originally compiled by William Henry (whenry at redhat dot com) based
+ on docker.io source material and internal work.
