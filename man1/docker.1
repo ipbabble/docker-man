@@ -1,0 +1,170 @@
+.TH "DOCKER" "1" "APRIL 2014" "Docker User Manuals" ""
+.SH NAME
+.PP
+docker \- Docker image and container command line interface
+.SH SYNOPSIS
+.PP
+\f[B]docker\f[] OPTIONS (#options) COMMAND [arg...]
+.SH DESCRIPTION
+.PP
+\f[B]docker\f[] has two distinct functions.
+It is used for starting the Docker daemon and to run the CLI (i.e., to
+command the daemon to manage images, containers etc.) So \f[B]docker\f[]
+is both a server, as a deamon, and a client to the daemon, through the
+CLI.
+.PP
+To run the Docker deamon you do not specify any of the commands listed
+below but must specify the \f[B]\-d\f[] option.
+The other options listed below are for the daemon only.
+.PP
+The Docker CLI has over 30 commands.
+The commands are listed below and each has its own man page which
+explain usage and arguements.
+.PP
+To see the man page for a command run \f[B]man docker \f[].
+.SH OPTIONS
+.PP
+\f[B]\-D\f[]=\f[I]ture\f[]|\f[I]false\f[]: Enable debug mode.
+Default is false.
+.PP
+\f[B]\-H\f[]=[unix:///var/run/docker.sock]: tcp://[host[:port]] to bind
+or unix://[/path/to/socket] to use.
+When host=[0.0.0.0], port=[4243] or path =[/var/run/docker.sock] is
+omitted, default values are used.
+.PP
+\f[B]\-\-api\-enable\-cors\f[]=\f[I]true\f[]|\f[I]false\f[] : Enable
+CORS headers in the remote API.
+Default is false.
+.PP
+\f[B]\-b\f[]="" : Attach containers to a pre\-existing network bridge;
+use \[aq]none\[aq] to disable container networking
+.PP
+\f[B]\-\-bip\f[]="" : Use the provided CIDR notation address for the
+dynamically created bridge (docker0); Mutually exclusive of \-b
+.PP
+\f[B]\-d\f[]=\f[I]true\f[]|\f[I]false\f[] : Enable daemon mode.
+Default is false.
+.PP
+\f[B]\-\-dns\f[]="" : Force Docker to use specific DNS servers
+.PP
+\f[B]\-g\f[]="" : Path to use as the root of the Docker runtime.
+Default is \f[C]/var/lib/docker\f[].
+.PP
+\f[B]\-\-icc\f[]=\f[I]true\f[]|\f[I]false\f[] : Enable inter\-container
+communication.
+Default is true.
+.PP
+\f[B]\-\-ip\f[]="" : Default IP address to use when binding container
+ports.
+Default is \f[C]0.0.0.0\f[].
+.PP
+\f[B]\-\-iptables\f[]=\f[I]true\f[]|\f[I]false\f[] : Disable
+Docker\[aq]s addition of iptables rules.
+Default is true.
+.PP
+\f[B]\-\-mtu\f[]=VALUE : Set the containers network mtu.
+Default is \f[C]1500\f[].
+.PP
+\f[B]\-p\f[]="" : Path to use for daemon PID file.
+Default is \f[C]/var/run/docker.pid\f[]
+.PP
+\f[B]\-r\f[]=\f[I]true\f[]|\f[I]false\f[] : Restart previously running
+containers.
+Default is true.
+.PP
+\f[B]\-s\f[]="" : Force the Docker runtime to use a specific storage
+driver.
+.PP
+\f[B]\-v\f[]=\f[I]true\f[]|\f[I]false\f[] : Print version information
+and quit.
+Default is false.
+.SH COMMANDS
+.PP
+\f[B]attach\f[] : Attach to a running container
+.PP
+\f[B]build\f[] : Build a container from a Dockerfile
+.PP
+\f[B]commit\f[] : Create a new image from a container\[aq]s changes
+.PP
+\f[B]cp\f[] : Copy files/folders from the containers filesystem to the
+host at path
+.PP
+\f[B]diff\f[] : Inspect changes on a container\[aq]s filesystem
+.PP
+\f[B]events\f[] : Get real time events from the server
+.PP
+\f[B]export\f[] : Stream the contents of a container as a tar archive
+.PP
+\f[B]history\f[] : Show the history of an image
+.PP
+\f[B]images\f[] : List images
+.PP
+\f[B]import\f[] : Create a new filesystem image from the contents of a
+tarball
+.PP
+\f[B]info\f[] : Display system\-wide information
+.PP
+\f[B]insert\f[] : Insert a file in an image
+.PP
+\f[B]inspect\f[] : Return low\-level information on a container
+.PP
+\f[B]kill\f[] : Kill a running container (which includes the wrapper
+process and everything inside it)
+.PP
+\f[B]load\f[] : Load an image from a tar archive
+.PP
+\f[B]login\f[] : Register or Login to a Docker registry server
+.PP
+\f[B]logs\f[] : Fetch the logs of a container
+.PP
+\f[B]port\f[] : Lookup the public\-facing port which is NAT\-ed to
+PRIVATE_PORT
+.PP
+\f[B]ps\f[] : List containers
+.PP
+\f[B]pull\f[] : Pull an image or a repository from a Docker registry
+server
+.PP
+\f[B]push\f[] : Push an image or a repository to a Docker registry
+server
+.PP
+\f[B]restart\f[] : Restart a running container
+.PP
+\f[B]rm\f[] : Remove one or more containers
+.PP
+\f[B]rmi\f[] : Remove one or more images
+.PP
+\f[B]run\f[] : Run a command in a new container
+.PP
+\f[B]save\f[] : Save an image to a tar archive
+.PP
+\f[B]search\f[] : Search for an image in the Docker index
+.PP
+\f[B]start\f[] : Start a stopped container
+.PP
+\f[B]stop\f[] : Stop a running container
+.PP
+\f[B]tag\f[] : Tag an image into a repository
+.PP
+\f[B]top\f[] : Lookup the running processes of a container
+.PP
+\f[B]version\f[] : Show the Docker version information
+.PP
+\f[B]wait\f[] : Block until a container stops, then print its exit code
+.SH EXAMPLES
+.PP
+For specific examples please see the man page for the specific Docker
+command.
+For example:
+.IP
+.nf
+\f[C]
+man\ docker\ run
+\f[]
+.fi
+.SH HISTORY
+.PP
+April 2014, Originally compiled by William Henry (whenry at redhat dot
+com) based on docker.io source material and internal work.
+.SH AUTHORS
+William Henry.
