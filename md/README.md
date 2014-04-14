@@ -14,13 +14,30 @@ DO NOT edit the man pages in the man1 directory. Instead make changes here.
     docker-diff.md
     docker-events.md
     docker-export.md
+    docker-history.md
     docker-images.md
+    docker-import.md
     docker-info.md
     docker-inspect.md
-    docker-rm.md
+    docker-kill.md
+    docker-load.md
+    docker-login.md
+    docker-logs.md
+    docker-port.md
+    docker-ps.md
+    docker-pull.md
+    docker-push.md
+    docker-restart.md
     docker-rmi.md
+    docker-rm.md
     docker-run.md
+    docker-save.md
+    docker-search.md
+    docker-start.md
+    docker-stop.md
     docker-tag.md
+    docker-top.md
+    docker-wait.md
 
 # Generating man pages from the Markdown
 You can generate the manpage by:
