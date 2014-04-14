@@ -17,7 +17,7 @@ You can detach from the container again (and leave it running) with `CTRL-c` (fo
 the client.
 
 # OPTIONS
-**--no-stdin**=*true*|*false*: 
+**--no-stdin**=*true*|*false*
 When set to true, do not attach to stdin. The default is *false*.
 
 **--sig-proxy**=*true*|*false*: 

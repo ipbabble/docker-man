@@ -23,158 +23,154 @@ its own man page which explain usage and arguements.
 To see the man page for a command run **man docker <command>**.
 
 # OPTIONS
-**-D**=*ture*|*false*: 
-Enable debug mode. Default is false.
+**-D**=*ture*|*false* 
+   Enable debug mode. Default is false.
 
-**-H**=[unix:///var/run/docker.sock]: tcp://[host[:port]] to bind or 
+**-H**, **--host**=[unix:///var/run/docker.sock]: tcp://[host[:port]] to bind or 
 unix://[/path/to/socket] to use. 
-When host=[0.0.0.0], port=[4243] or path 
-=[/var/run/docker.sock] is omitted, default values are used.
+   Enable both the socket support and TCP on localhost. When host=[0.0.0.0], 
+port=[4243] or path =[/var/run/docker.sock] is omitted, default values are used.
 
 **--api-enable-cors**=*true*|*false*
-: Enable CORS headers in the remote API. Default is false.
+  Enable CORS headers in the remote API. Default is false.
 
 **-b**=""
-: Attach containers to a pre\-existing network bridge; use 'none' to disable container networking
+  Attach containers to a pre\-existing network bridge; use 'none' to disable container networking
 
 **--bip**=""
-: Use the provided CIDR notation address for the dynamically created bridge (docker0); Mutually exclusive of \-b
+  Use the provided CIDR notation address for the dynamically created bridge (docker0); Mutually exclusive of \-b
 
 **-d**=*true*|*false*
-: Enable daemon mode. Default is false.
+  Enable daemon mode. Default is false.
 
 **--dns**=""
-: Force Docker to use specific DNS servers
+  Force Docker to use specific DNS servers
 
 **-g**=""
-: Path to use as the root of the Docker runtime. Default is `/var/lib/docker`.
+  Path to use as the root of the Docker runtime. Default is `/var/lib/docker`.
 
 **--icc**=*true*|*false*
-: Enable inter\-container communication. Default is true.
+  Enable inter\-container communication. Default is true.
 
 **--ip**=""
-: Default IP address to use when binding container ports. Default is `0.0.0.0`.
+  Default IP address to use when binding container ports. Default is `0.0.0.0`.
 
 **--iptables**=*true*|*false*
-: Disable Docker's addition of iptables rules. Default is true.
+  Disable Docker's addition of iptables rules. Default is true.
 
 **--mtu**=VALUE
-: Set the containers network mtu. Default is `1500`.
+  Set the containers network mtu. Default is `1500`.
 
 **-p**=""
-: Path to use for daemon PID file. Default is `/var/run/docker.pid`
+  Path to use for daemon PID file. Default is `/var/run/docker.pid`
 
 **-r**=*true*|*false*
-: Restart previously running containers. Default is true.
+  Restart previously running containers. Default is true.
 
 **-s**=""
-: Force the Docker runtime to use a specific storage driver.
+  Force the Docker runtime to use a specific storage driver.
 
 **-v**=*true*|*false*
-: Print version information and quit. Default is false.
+  Print version information and quit. Default is false.
 
 # COMMANDS
+**docker-attach(1)** 
+  Attach to a running container
 
-**attach** 
-: Attach to a running container
+**docker-build(1)** 
+  Build a container from a Dockerfile
 
-**build** 
-: Build a container from a Dockerfile
+**docker-commit(1)** 
+  Create a new image from a container's changes
 
-**commit** 
-: Create a new image from a container's changes
+**docker-cp(1)** 
+  Copy files/folders from the containers filesystem to the host at path
 
-**cp** 
-: Copy files/folders from the containers filesystem to the host at path
-
-**diff** 
-: Inspect changes on a container's filesystem
+**docker-diff(1)** 
+  Inspect changes on a container's filesystem
     
 
-**events**
-: Get real time events from the server
+**docker-events(1)**
+  Get real time events from the server
 
-**export** 
-: Stream the contents of a container as a tar archive
+**docker-export(1)** 
+  Stream the contents of a container as a tar archive
 
-**history**
-: Show the history of an image
+**docker-history(1)**
+  Show the history of an image
 
-**images**
-: List images
+**docker-images(1)**
+  List images
 
-**import** 
-: Create a new filesystem image from the contents of a tarball
+**docker-import(1)** 
+  Create a new filesystem image from the contents of a tarball
 
-**info** 
-: Display system-wide information
+**docker-info(1)** 
+  Display system-wide information
 
-**insert** 
-: Insert a file in an image
+**docker-inspect(1)** 
+  Return low-level information on a container
 
-**inspect** 
-: Return low-level information on a container
-
-**kill** 
-: Kill a running container (which includes the wrapper process and everything 
+**docker-kill(1)** 
+  Kill a running container (which includes the wrapper process and everything 
 inside it) 
 
-**load** 
-: Load an image from a tar archive
+**docker-load(1)** 
+  Load an image from a tar archive
 
-**login** 
-: Register or Login to a Docker registry server
+**docker-login(1)** 
+  Register or Login to a Docker registry server
 
-**logs** 
-: Fetch the logs of a container
+**docker-logs(1)** 
+  Fetch the logs of a container
 
-**port** 
-: Lookup the public-facing port which is NAT-ed to PRIVATE_PORT
+**docker-port(1)** 
+  Lookup the public-facing port which is NAT-ed to PRIVATE_PORT
 
-**ps** 
-: List containers
+**docker-ps(1)**
+  List containers
 
-**pull** 
-: Pull an image or a repository from a Docker registry server
+**docker-pull(1)**
+  Pull an image or a repository from a Docker registry server
 
-**push** 
-: Push an image or a repository to a Docker registry server
+**docker-push(1)**
+  Push an image or a repository to a Docker registry server
 
-**restart** 
-: Restart a running container
+**docker-restart(1)** 
+  Restart a running container
 
-**rm** 
-: Remove one or more containers
+**docker-rm(1)**
+  Remove one or more containers
 
-**rmi** 
-: Remove one or more images
+**docker-rmi(1)**
+  Remove one or more images
 
-**run** 
-: Run a command in a new container
+**docker-run(1)**
+  Run a command in a new container
 
-**save** 
-: Save an image to a tar archive
+**docker-save(1)**
+  Save an image to a tar archive
 
-**search** 
-: Search for an image in the Docker index
+**docker-search(1)** 
+  Search for an image in the Docker index
 
-**start** 
-: Start a stopped container
+**docker-start(1)** 
+  Start a stopped container
 
-**stop** 
-: Stop a running container
+**docker-stop(1)** 
+  Stop a running container
 
-**tag** 
-: Tag an image into a repository
+**docker-tag(1)** 
+  Tag an image into a repository
 
-**top** 
-: Lookup the running processes of a container
+**docker-top(1)** 
+  Lookup the running processes of a container
 
 **version**
-: Show the Docker version information
+  Show the Docker version information
 
-**wait** 
-: Block until a container stops, then print its exit code
+**docker-wait(1)** 
+  Block until a container stops, then print its exit code
 
 # EXAMPLES
 
