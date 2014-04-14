@@ -9,6 +9,11 @@ DO NOT edit the man pages in the man1 directory. Instead make changes here.
     docker.md
     docker-attach.md
     docker-build.md
+    docker-commit.md
+    docker-cp.md
+    docker-diff.md
+    docker-events.md
+    docker-export.md
     docker-images.md
     docker-info.md
     docker-inspect.md
